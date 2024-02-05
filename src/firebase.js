@@ -8,13 +8,12 @@ import {
 } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB1OQdS7Cz9wyohBTYWGoD4dD4w1DBdN0g",
-  authDomain: "order-management-71bf1.firebaseapp.com",
-  projectId: "order-management-71bf1",
-  storageBucket: "order-management-71bf1.appspot.com",
-  messagingSenderId: "390607973296",
-  appId: "1:390607973296:web:31b471b2ba6535f5394475",
-  measurementId: "G-X88MC8BRPL",
+  apiKey: "AIzaSyC29QTKWcLuSeZkBXVfMedhmZy69Oq5z6k",
+  authDomain: "test-f56db.firebaseapp.com",
+  projectId: "test-f56db",
+  storageBucket: "test-f56db.appspot.com",
+  messagingSenderId: "361684335587",
+  appId: "1:361684335587:web:86d9bdc2c96fbd3c52fed6",
 };
 
 // Initialize Firebase

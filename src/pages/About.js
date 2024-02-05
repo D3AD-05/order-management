@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "./test.css";
-
+import PhoneAuth from "../components/PhoneAuth";
+import "@fortawesome/fontawesome-free/css/all.css";
 const LoginComponent = () => {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
+  const [mobNo, setMobNo] = useState();
 
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
@@ -10,6 +12,14 @@ const LoginComponent = () => {
 
   const handleSignInClick = () => {
     setIsSignUpMode(false);
+  };
+
+  const dataFromChild = (data) => {
+    console.log("from child ", data);
+    if (data.from) {
+      setIsSignUpMode(true);
+      setMobNo(data.phoneNumber);
+    }
   };
 
   return (
@@ -23,12 +33,17 @@ const LoginComponent = () => {
             <h2 className="title">Sign in</h2>
             <div className="input-field">
               <i className="fas fa-user"></i>
-              <input type="text" placeholder="Username" />
+              <select className="dropdown-field" id="user" name="user">
+                <option value="3">Customer</option>
+                <option value="2">Smith</option>
+                <option value="1">Admin</option>
+              </select>
             </div>
-            <div className="input-field">
-              <i className="fas fa-lock"></i>
-              <input type="password" placeholder="Password" />
-            </div>
+            {/* <div className="input-field">
+              <i className="fas fa-phone"></i>
+              <input type="tel" placeholder="Mobile Number" />
+            </div> */}
+            <PhoneAuth sendDataToParent={dataFromChild} />
             <input type="submit" value="Login" className="btn solid" />
             <p className="social-text">Or Sign in with social platforms</p>
             <div className="social-media">
@@ -64,7 +79,19 @@ const LoginComponent = () => {
               <i className="fas fa-lock"></i>
               <input type="password" placeholder="Password" />
             </div>
-            <input type="submit" className="btn" value="Sign up" />
+            <div className="input-field">
+              <i className="fas fa-lock"></i>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter 10 digit Mobile Number"
+                pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+              />
+            </div>
+            <PhoneAuth mobNo={mobNo} />
+
+            <input type="submit" className="btn btn2" value="Sign up" />
             <p className="social-text">Or Sign up with social platforms</p>
             <div className="social-media">
               <a href="#" className="social-icon">
