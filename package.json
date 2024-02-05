@@ -17,7 +17,7 @@
     "react-phone-input-2": "^2.15.1",
     "react-phone-input-material-ui": "^2.18.1",
     "react-router-dom": "^6.21.3",
-    "react-scripts": "5.0.1",
+    "styled-components": "^6.1.8",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -43,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "react-scripts": "^5.0.1"
   }
 }
