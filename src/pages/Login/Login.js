@@ -54,3 +54,76 @@
 // }
 
 // export default Login;
+
+import React, { useState } from "react";
+import { FormInput } from "../../components";
+
+function Login() {
+  const [formData, setFormData] = useState({
+    rollNo: "",
+    name: "",
+    email: "",
+    classNo: "",
+    dob: "",
+    phoneNo: "",
+  });
+  const onChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    // setCurrentData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const inputs = [
+    {
+      id: 1,
+      name: "name",
+      type: "text",
+      placeholder: "Student name",
+      errorMessage: "name should be 3-16 characters",
+      label: "Student name",
+      pattern: "^[A-Za-z]{3,16}$",
+      required: true,
+    },
+    {
+      id: 2,
+      name: "email",
+      type: "email",
+      placeholder: "Email",
+      errorMessage: "Try a valid email address!",
+      label: "Email",
+      required: true,
+    },
+    {
+      id: 3,
+      name: "rollNo",
+      type: "number",
+      placeholder: "Roll no",
+      errorMessage: " !",
+      label: "Roll No",
+      required: true,
+    },
+    {
+      id: 4,
+      name: "classNo",
+      type: "number",
+      placeholder: "class",
+      errorMessage: " !",
+      label: "class",
+      required: true,
+    },
+  ];
+  return (
+    <>
+      {inputs.map((input, key) => (
+        <FormInput
+          key={input.id}
+          {...input}
+          value={inputs[input["name"]]}
+          onChange={onChange}
+        />
+      ))}
+
+      <FormInput namme={"naa,ere"} value={"ssss"} onChange={onChange} />
+    </>
+  );
+}
+
+export default Login;

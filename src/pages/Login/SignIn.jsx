@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import "./test.css";
-import PhoneAuth from "../components/phoneAuth/PhoneAuth";
+import "./signin.css";
+import { PhoneAuth } from "../../components";
 import "@fortawesome/fontawesome-free/css/all.css";
-const LoginComponent = () => {
+const SignIn = () => {
   const [isSignUpMode, setIsSignUpMode] = useState(false);
   const [verifiedData, setVerifiedData] = useState();
   const [selectedUser, setSelectedUser] = useState("3");
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    userType: "",
+    phoneNo: "",
+  });
   const handleSignUpClick = () => {
     setIsSignUpMode(true);
   };
@@ -22,9 +28,12 @@ const LoginComponent = () => {
     }
   };
 
-  const handleUserChange = (event) => {
-    const value = event.target.value;
-    setSelectedUser(value);
+  const handleOnChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+    if(name === "user"){
+      setSelectedUser(value);
+    }
   };
 
   return (
@@ -36,7 +45,7 @@ const LoginComponent = () => {
             className={`sign-in-form ${isSignUpMode ? "" : "active-form"}`}
           >
             <h2 className="title">Sign in</h2>
-
+{/*---------                inputs                                    --------- */}
             <div className="input-field">
               <i
                 className={
@@ -52,33 +61,23 @@ const LoginComponent = () => {
                 id="user"
                 name="user"
                 value={selectedUser}
-                onChange={handleUserChange}
+                onChange={handleOnChange}
               >
                 <option value="3">Customer</option>
                 <option value="2">Smith</option>
                 <option value="1">Admin</option>
               </select>
             </div>
-            {/* <div className="input-field">
-              <i className="fas fa-phone"></i>
-              <input type="tel" placeholder="Mobile Number" />
-            </div> */}
+            
             <PhoneAuth sendDataToParent={dataFromChild} />
-            <input type="submit" value="Login" className="btn solid" />
-            <p className="social-text">Or Sign in with social platforms</p>
+            <input type="submit" value="Login"  className={!verifiedData?"btn solid btn2":"btn solid"} />
+            <p className="social-text">Or Sign in with google</p>
             <div className="social-media">
-              {/* <a href="#" className="social-icon">
-                <i className="fab fa-facebook-f"></i>
-              </a>
-              <a href="#" className="social-icon">
-                <i className="fab fa-twitter"></i>
-              </a> */}
+             
               <a href="#" className="social-icon">
                 <i className="fab fa-google"></i>
               </a>
-              {/* <a href="#" className="social-icon">
-                <i className="fab fa-linkedin-in"></i>
-              </a> */}
+              
             </div>
           </form>
 
@@ -179,4 +178,4 @@ const LoginComponent = () => {
   );
 };
 
-export default LoginComponent;
+export default SignIn;
